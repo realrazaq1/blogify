@@ -96,6 +96,23 @@ const checkCurrentUser = (req, res, next) => {
     next();
   }
 };
+// hide login and registration page from logged in users
+const hideAuthRoutes = (req, res, next) => {
+  const token = req.cookies.btoken;
+  if (token) {
+    // verify token & open protected route
+    jwt.verify(token, TOKEN_SECRET, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+      } else {
+        //  redirect to dashboard
+        res.redirect("/dashboard");
+      }
+    });
+  } else {
+    next();
+  }
+};
 
 module.exports = {
   connectToDB,
@@ -103,4 +120,5 @@ module.exports = {
   handleErrors,
   requireAuth,
   checkCurrentUser,
+  hideAuthRoutes,
 };
