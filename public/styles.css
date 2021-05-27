@@ -1,0 +1,68 @@
+body {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 3.5rem;
+  align-items: center;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1.3rem;
+  list-style-type: none;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  max-width: 70%;
+  margin: 4rem auto;
+  padding: 2rem 3rem;
+}
+
+.container p {
+  line-height: 3em;
+}
+
+form input {
+  display: block;
+  padding: 0.7rem;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+}
+
+.submit-btn {
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.4rem;
+}
+
+.submit-btn:hover {
+  background: grey;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 13px;
+}

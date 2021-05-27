@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo"><h1>Blogify</h1></a>
+      <ul class="nav-menu">
+        <% if(!user){ %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <%} else { %>
+        <li><a href="/logout">Logout</a></li>
+        <li>welcome, <%= user.username %></li>
+        <% } %>
+      </ul>
+    </header>
+    <main>
+      <div class="container">
+        <h2>Login to your account</h2>
+        <form>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <div class="error username"></div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <div class="error password"></div>
+
+          <button class="submit-btn">Login</button>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const username = document.querySelector("#username");
+      const password = document.querySelector("#password");
+      const submitBtn = document.querySelector(".submit-btn");
+
+      const usernameErr = document.querySelector(".error.username");
+      const passwordErr = document.querySelector(".error.password");
+
+      submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        // reset errors
+        usernameErr.innerHTML = "";
+        passwordErr.innerHTML = "";
+
+        const data = {
+          username: username.value,
+          password: password.value,
+        };
+
+        try {
+          const res = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const resp = await res.json();
+
+          if (resp.userId) {
+            location.assign("/dashboard");
+          }
+
+          if (resp.errors) {
+            usernameErr.innerHTML = resp.errors.username;
+            passwordErr.innerHTML = resp.errors.password;
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+  </body>
+</html>

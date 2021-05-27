@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | create a new account</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo"><h1>Blogify</h1></a>
+      <ul class="nav-menu">
+        <% if(!user){ %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <%} else { %>
+        <li><a href="/logout">Logout</a></li>
+        <li>welcome, <%= user.username %></li>
+        <% } %>
+      </ul>
+    </header>
+    <main>
+      <div class="container">
+        <h2>Create a new account</h2>
+        <form action="/register" method="POST">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <div class="error username"></div>
+          <input type="email" name="email" id="email" placeholder="Email" />
+          <div class="error email"></div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <div class="error password"></div>
+          <button class="submit-btn">Register</button>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const email = document.querySelector("#email");
+      const username = document.querySelector("#username");
+      const password = document.querySelector("#password");
+      const submitBtn = document.querySelector(".submit-btn");
+
+      const emailErr = document.querySelector(".error.email");
+      const usernameErr = document.querySelector(".error.username");
+      const passwordErr = document.querySelector(".error.password");
+
+      submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        // reset errors
+        usernameErr.innerHTML = "";
+        emailErr.innerHTML = "";
+        passwordErr.innerHTML = "";
+
+        const data = {
+          email: email.value,
+          username: username.value,
+          password: password.value,
+        };
+
+        try {
+          const res = await fetch("/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const resp = await res.json();
+
+          if (resp.userId) {
+            location.assign("/dashboard");
+          }
+
+          if (resp.errors) {
+            usernameErr.innerHTML = resp.errors.username;
+            emailErr.innerHTML = resp.errors.email;
+            passwordErr.innerHTML = resp.errors.password;
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+  </body>
+</html>

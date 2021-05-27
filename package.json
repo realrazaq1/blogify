@@ -1,0 +1,30 @@
+{
+  "name": "blogify",
+  "version": "1.0.0",
+  "description": "Blogging application where users can signup and login and be able to create blogs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realrazaq1/blogify.git"
+  },
+  "keywords": [],
+  "author": "Razaq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/realrazaq1/blogify/issues"
+  },
+  "homepage": "https://github.com/realrazaq1/blogify#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.11",
+    "validator": "^13.6.0"
+  }
+}

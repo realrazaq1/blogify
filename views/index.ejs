@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogify | create amazing blogs</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo"><h1>Blogify</h1></a>
+      <ul class="nav-menu">
+        <% if(!user){ %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <%} else { %>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li>welcome, <%= user.username %></li>
+        <% } %>
+      </ul>
+    </header>
+    <main>
+      <div class="container">
+        <h1>Welcome to Blogify</h1>
+        <p>
+          blogify is a web application that allow you to create and publish
+          blogs easily.
+        </p>
+        <p>Register for a free account to get started.</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut veritatis
+          vero culpa labore quidem eaque dolor distinctio delectus similique
+          asperiores ad a id impedit error cupiditate iure ipsa, veniam
+          temporibus!
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
