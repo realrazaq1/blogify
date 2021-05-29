@@ -27,7 +27,14 @@ const createToken = (id) => {
 
 // handle errors
 const handleErrors = (err) => {
-  const errors = { username: "", email: "", password: "" };
+  const errors = {
+    username: "",
+    email: "",
+    password: "",
+    title: "",
+    email: "",
+    password: "",
+  };
 
   // username error
   if (err.message == "invalid username") {
@@ -38,8 +45,14 @@ const handleErrors = (err) => {
     errors.password = err.message;
   }
 
-  // validation errors
+  // user validation errors
   if (err.message.includes("User validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+  // blog validation errors
+  if (err.message.includes("Blog validation failed")) {
     Object.values(err.errors).forEach(({ properties }) => {
       errors[properties.path] = properties.message;
     });
@@ -76,6 +89,7 @@ const requireAuth = (req, res, next) => {
     res.redirect("/login");
   }
 };
+
 // check currently logged in user
 const checkCurrentUser = (req, res, next) => {
   const token = req.cookies.btoken;
@@ -96,6 +110,7 @@ const checkCurrentUser = (req, res, next) => {
     next();
   }
 };
+
 // hide login and registration page from logged in users
 const hideAuthRoutes = (req, res, next) => {
   const token = req.cookies.btoken;
@@ -114,6 +129,23 @@ const hideAuthRoutes = (req, res, next) => {
   }
 };
 
+const getLoggedInUser = (req, res) => {
+  const token = req.cookies.btoken;
+  let user;
+  if (token) {
+    // verify token & open protected route
+    jwt.verify(token, TOKEN_SECRET, async (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+      } else {
+        //  grab user info from db and send to the views
+        user = await User.findById(decodedToken.id);
+        return user;
+      }
+    });
+  }
+};
+
 module.exports = {
   connectToDB,
   createToken,
@@ -121,4 +153,5 @@ module.exports = {
   requireAuth,
   checkCurrentUser,
   hideAuthRoutes,
+  getLoggedInUser,
 };

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= blog.title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo"><h1>Blogify</h1></a>
+      <ul class="nav-menu">
+        <% if(!user){ %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <%} else { %>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li>welcome, <%= user.username %></li>
+        <% } %>
+      </ul>
+    </header>
+    <main>
+      <div class="container">
+        <h1><%= blog.title %></h1>
+        <p><%= blog.body %></p>
+        <div class="blog-info">
+          <p>posted by: <%= blog.author %></p>
+          <p>date: <%= blog.createdAt %></p>
+          <div class="blog-actions">
+            <% if(!user){ %>
+            <p></p>
+            <% } else if(user.username == author){ %>
+            <button class="delete-blog-btn" data-blog-id="<%= blog._id %>">
+              delete
+            </button>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const deleteBlogBtn = document.querySelector(".delete-blog-btn");
+
+      // delete blog
+      deleteBlogBtn.addEventListener("click", async (e) => {
+        const { blogId } = deleteBlogBtn.dataset;
+        console.log(blogId);
+        try {
+          const res = await fetch("/blog", {
+            headers: { "Content-Type": "application/json" },
+            method: "DELETE",
+            body: JSON.stringify({ blogId }),
+          });
+
+          const resp = await res.json();
+          console.log(resp);
+
+          if (resp.message == "blog deleted successfully") {
+            location.assign("/dashboard");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+  </body>
+</html>

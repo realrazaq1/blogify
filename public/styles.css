@@ -30,6 +30,10 @@ header {
   color: white;
 }
 
+main {
+  position: relative;
+}
+
 .container {
   max-width: 70%;
   margin: 4rem auto;
@@ -65,4 +69,88 @@ form input {
   color: red;
   font-weight: bold;
   font-size: 13px;
+}
+
+.blog-form * {
+  display: block;
+  width: 70%;
+  margin: 1rem 0;
+}
+
+textarea {
+  font-size: 1.4rem;
+  padding: 0.7rem;
+}
+
+.publish-btn {
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.7rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  width: 120px;
+  cursor: pointer;
+}
+
+.publish-btn:hover {
+  background-color: grey;
+}
+
+.published-blogs {
+  height: 700px;
+  width: 410px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.published-blogs h1 {
+  color: rgb(90, 158, 90);
+  font-size: 1.3rem;
+  padding-left: 10px;
+  border-left: 2px solid rgb(90, 158, 90);
+}
+
+.author-info p {
+  width: 100px;
+  font-weight: bold;
+  margin-bottom: -17px;
+}
+
+.author-info input {
+  font-size: 1rem;
+}
+
+.blog {
+  text-decoration: none;
+  color: rgb(78, 77, 77);
+  display: block;
+  border-bottom: 1px dashed black;
+  margin: 0.7rem 0;
+  padding: 1rem;
+}
+
+.blog p {
+  line-height: 2em;
+}
+
+.blog:hover h2 {
+  color: green;
+}
+
+.blog:hover {
+  background-color: #eee;
+}
+
+.vablogs {
+  display: inline-block;
+  text-decoration: none;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: 10px;
+  margin-top: 1rem;
 }

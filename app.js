@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const AuthRoutes = require("./routes/AuthRoutes");
+const BlogRoutes = require("./routes/BlogRoutes");
 const { connectToDB, requireAuth, checkCurrentUser } = require("./utils/utils");
 
 // setup express app
@@ -32,6 +33,7 @@ app.get("/dashboard", requireAuth, (req, res) => {
 });
 
 app.use(AuthRoutes);
+app.use(BlogRoutes);
 
 // listen for request
 app.listen(PORT, () => {

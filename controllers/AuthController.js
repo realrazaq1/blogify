@@ -45,7 +45,7 @@ module.exports = {
       const { username, email, password } = req.body;
       const user = await User.create({ username, email, password });
 
-      // create token and send to browser in a cookie
+      // create token and send to browser in via cookie
       const token = createToken(user._id);
       res.cookie("btoken", token, { maxAge: 86400000, httpOnly: true });
       res.status(201).json({ userId: user._id });
