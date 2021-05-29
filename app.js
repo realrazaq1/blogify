@@ -25,11 +25,11 @@ connectToDB();
 app.use("*", checkCurrentUser);
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { title: "Blogify | create awesome blogs" });
 });
 
 app.get("/dashboard", requireAuth, (req, res) => {
-  res.render("dashboard");
+  res.render("dashboard", { title: "Dashboard" });
 });
 
 app.use(AuthRoutes);

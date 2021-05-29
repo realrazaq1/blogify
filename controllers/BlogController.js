@@ -61,7 +61,7 @@ module.exports = {
       if (blog == null) {
         throw Error("blog deleted or does not exist");
       } else {
-        res.render("blog", { blog, author });
+        res.render("blog", { blog, author, title: `${blog.title}` });
       }
     } catch (err) {
       console.log(err.message);
@@ -87,7 +87,7 @@ module.exports = {
           "this author has not posted any blog or the author does not exist"
         );
       } else {
-        res.render("author-blogs", { blogs, author });
+        res.render("author-blogs", { blogs, author, title: `${author} blogs` });
       }
     } catch (err) {
       console.log(err.message);

@@ -5,12 +5,12 @@ const bcrypt = require("bcrypt");
 module.exports = {
   /* handles GET request to /login */
   showLoginPage: (req, res) => {
-    res.render("login");
+    res.render("login", { title: "Login" });
   },
 
   /* handles GET request to /register */
   showRegPage: (req, res) => {
-    res.render("register");
+    res.render("register", { title: "Register" });
   },
 
   /* handles POST request to /login */
