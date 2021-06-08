@@ -5,12 +5,12 @@ const bcrypt = require("bcrypt");
 module.exports = {
   /* handles GET request to /login */
   showLoginPage: (req, res) => {
-    res.render("login", { title: "Login" });
+    res.render("login", { title: "Login", cssfile: "login" });
   },
 
   /* handles GET request to /register */
   showRegPage: (req, res) => {
-    res.render("register", { title: "Register" });
+    res.render("register", { title: "Register", cssfile: "register" });
   },
 
   /* handles POST request to /login */
@@ -57,7 +57,7 @@ module.exports = {
     }
   },
 
-  /* Handles GET request to /logout */
+  /* handles GET request to /logout */
   logoutUser: (req, res) => {
     //  reset cookie
     res.cookie("btoken", "", { maxAge: 1, httpOnly: true });

@@ -2,6 +2,7 @@ const Blog = require("../models/BlogModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { TOKEN_SECRET } = process.env;
+const moment = require("moment");
 
 const { handleErrors } = require("../utils/utils");
 const User = require("../models/UserModel");
@@ -45,8 +46,6 @@ module.exports = {
             .limit(3);
           // send the blogs to the client
           res.status(200).json({ blogs });
-
-          // end else
         }
       });
     }
@@ -61,7 +60,13 @@ module.exports = {
       if (blog == null) {
         throw Error("blog deleted or does not exist");
       } else {
-        res.render("blog", { blog, author, title: `${blog.title}` });
+        res.render("blog", {
+          blog,
+          author,
+          title: `${blog.title}`,
+          cssfile: "blog",
+          moment,
+        });
       }
     } catch (err) {
       console.log(err.message);
@@ -76,7 +81,7 @@ module.exports = {
   },
 
   getAuthorBlogs: async (req, res) => {
-    const { author } = req.params;
+    let { author } = req.params;
     try {
       const blogs = await Blog.find({ author }).sort({
         createdAt: "-1",
@@ -87,7 +92,13 @@ module.exports = {
           "this author has not posted any blog or the author does not exist"
         );
       } else {
-        res.render("author-blogs", { blogs, author, title: `${author} blogs` });
+        author = author[0].toUpperCase() + author.slice(1);
+        res.render("author-blogs", {
+          blogs,
+          author,
+          title: `${author} blogs`,
+          cssfile: "author-blog",
+        });
       }
     } catch (err) {
       console.log(err.message);
@@ -104,5 +115,14 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+  updateBlog: async (req, res) => {
+    const { blogId, ...data } = req.body;
+    await Blog.findByIdAndUpdate(blogId, { $set: data });
+    // const blog = await Blog.findOneAndUpdate({ _id: blogId }, data, {
+    //   returnOriginal: false,
+    // });
+
+    res.json({ message: "blog updated" });
   },
 };

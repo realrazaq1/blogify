@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/header.css" />
 <header>
   <a href="/" class="logo"
     ><h1><i class="fas fa-feather"></i> Blogify</h1></a
@@ -11,15 +12,49 @@
       <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
     </li>
     <%} else { %>
-    <li>
-      <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    </li>
-    <li>
-      <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    </li>
+
     <li class="current-user">
-      <i class="fas fa-user"></i> <%= user.username.toUpperCase() %>
+      <% const loggedInUser = user.username[0].toUpperCase() +
+      user.username.slice(1); %> <%=loggedInUser %><i
+        class="fas fa-caret-down"
+        style="margin-left: 5px"
+      ></i>
     </li>
     <% } %>
   </ul>
+  <% if(user){ %>
+  <div class="user-dropdown">
+    <i class="fas fa-caret-up caret-up"></i>
+    <ul class="dropdown-items">
+      <li>
+        <a href="/profile/<%= user.username %> "
+          ><i class="fas fa-user"></i> View Profile</a
+        >
+      </li>
+      <li>
+        <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      </li>
+      <li>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+  <% } %>
 </header>
+
+<script>
+  const currentUser = document.querySelector(".current-user");
+  const userDropdown = document.querySelector(".user-dropdown");
+  const header = document.querySelector("header");
+
+  currentUser.addEventListener("mouseover", (e) => {
+    userDropdown.classList.add("show-dropdown");
+  });
+  document.body.addEventListener("click", (e) => {
+    if (e.target != userDropdown) {
+      if (userDropdown.classList.contains("show-dropdown")) {
+        userDropdown.classList.remove("show-dropdown");
+      }
+    }
+  });
+</script>

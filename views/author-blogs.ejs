@@ -3,7 +3,8 @@
  <%- include('./partials/header.ejs') %>
     <main>
       <div class="container">
-      <h1><%= author %>  blogs</h1>
+        <% newAuthor = author[0].toUpperCase() + author.slice(1); %> 
+      <h1><%= newAuthor %>  blogs</h1>
         <% blogs.forEach(blog => { %>
 
             <a href="/blog/<%= blog.author %>/<%= blog._id %> " class="blog">

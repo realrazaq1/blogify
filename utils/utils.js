@@ -6,15 +6,16 @@ const User = require("../models/UserModel");
 const { TOKEN_SECRET } = process.env;
 
 // connect to database
-const connectToDB = async () => {
+const connectToDB = async (cb) => {
   try {
     await mongoose.connect("mongodb://localhost:27017/blogify", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: true,
-      useCreateIndex: false,
+      useCreateIndex: true,
+      useFindAndModify: false,
     });
-    console.log("connected to mongoDB");
+    console.log("connected to mongoDB...");
+    cb ? cb() : null;
   } catch (err) {
     console.log(err);
   }

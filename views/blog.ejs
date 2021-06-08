@@ -6,23 +6,84 @@
         <h1><%= blog.title %></h1>
         <p><%= blog.body %></p>
         <div class="blog-info">
-          <p>posted by: <%= blog.author %></p>
-          <p>date: <%= blog.createdAt %></p>
+          <hr>
+        <div class="blog-d">
+          <p><i class="fas fa-user"></i> <%= blog.author %></p>
+          <p><i class="far fa-calendar-alt"></i> <%= moment(blog.createdAt).format("MMMM Do, YYYY") %></p>
+          <p><i class="far fa-clock"></i> <%= moment(blog.createdAt).format("h:mm A") %></p>
+        </div>
+
           <div class="blog-actions">
             <% if(!user){ %>
             <p></p>
             <% } else if(user.username == author){ %>
-            <button class="delete-blog-btn" data-blog-id="<%= blog._id %>">
-              delete
-            </button>
+           <div class="delete-blog-btn blog-action" data-blog-id="<%= blog._id %>">
+            <i class="fas fa-trash"></i>
+           </div>
+           <div class="edit-blog-btn blog-action" >
+            <i class="fas fa-edit"></i>
+           </div>
             <% } %>
           </div>
         </div>
       </div>
+      <!-- update blog -->
+      <% if(user) {%>
+        <div class="update-blog-container">
+          <div class="update-blog-wrapper">
+            <div class="update-blog-form">
+              <h1>Update Blog</h1>
+              <form class="blog-form">
+                <input type="text" name="title" id="title" placeholder="Title" value="<%= blog.title %> " />
+                <div class="error title"></div>
+                <textarea
+                  name="snippet"
+                  id="snippet"
+                  cols="30"
+                  rows="4"
+                  placeholder="Snippet"
+                ><%= blog.snippet %> </textarea>
+                <div class="error snippet"></div>
+                <textarea
+                  name="body"
+                  id="body"
+                  cols="30"
+                  rows="7"
+                  placeholder="Body"
+                  
+                ><%= blog.body %> </textarea>
+                <div class="error body"></div>
+      
+                <div class="author-info">
+                  <p>Author:</p>
+                  <input
+                    type="text"
+                    name="author"
+                    id="author"
+                    value="<%= user.username %> "
+                    disabled
+                  />
+                </div>
+                <button class="publish-btn" data-blog-id="<%= blog._id %>">Update</button>
+              </form>
+              </div>
+             
+            </div>
+          </div>
+          
+        </div>
+      <%}%> 
     </main>
 
     <script>
       const deleteBlogBtn = document.querySelector(".delete-blog-btn");
+      const editBlogBtn = document.querySelector(".edit-blog-btn");
+      const updateBlogContainer = document.querySelector(".update-blog-container");
+      const title = document.querySelector("#title");
+      const snippet = document.querySelector("#snippet");
+      const body = document.querySelector("#body");
+      const author = document.querySelector("#author");
+      const publishBtn = document.querySelector(".publish-btn");
 
       // delete blog
       deleteBlogBtn.addEventListener("click", async (e) => {
@@ -45,6 +106,44 @@
           console.log(err);
         }
       });
+      
+      editBlogBtn.addEventListener("click",  (e) => {
+        updateBlogContainer.classList.add('show-update-container')
+       });
+      updateBlogContainer.addEventListener('click', (e) => {
+        if(e.target.classList.contains('update-blog-container')){
+        updateBlogContainer.classList.remove('show-update-container')
+
+        }
+      })
+
+      // update blog
+      publishBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const { blogId } = publishBtn.dataset;
+        console.log(blogId);
+        const data = {
+          title: title.value,
+          snippet: snippet.value,
+          body: body.value,
+          author: author.value,
+          blogId,
+        }
+
+        try {
+          const res = await fetch('/blog', {
+            method: 'PUT',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+          })
+          const resp = await res.json();
+          console.log(resp);
+          location.reload()
+        } catch (err) {
+          console.log(err);
+        }
+
+      })
     </script>
   </body>
 </html>
