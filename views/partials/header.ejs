@@ -14,11 +14,12 @@
     <%} else { %>
 
     <li class="current-user">
-      <% const loggedInUser = user.username[0].toUpperCase() +
-      user.username.slice(1); %> <%=loggedInUser %><i
-        class="fas fa-caret-down"
-        style="margin-left: 5px"
-      ></i>
+      <img src="/uploads/<%= user.profilePic %> " class="profile-pic" />
+      <div class="current-user-name">
+        <% const loggedInUser = user.username[0].toUpperCase() +
+        user.username.slice(1); %> <%=loggedInUser %>
+        <i class="fas fa-angle-down"></i>
+      </div>
     </li>
     <% } %>
   </ul>

@@ -1,7 +1,99 @@
 .container {
   max-width: 70%;
   margin: 4rem auto;
+  display: flex;
+  justify-content: center;
 }
 .container h1 {
   margin-bottom: 1.2rem;
+}
+
+.profile-container {
+  border: 2px solid rgb(211, 210, 210);
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  padding: 2rem 4rem;
+}
+.profile-container h1 {
+  margin-top: 2rem;
+  color: grey;
+  border-left: 3px solid grey;
+  padding-left: 10px;
+}
+.profile-container h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: grey;
+  border-left: 3px solid grey;
+  padding-left: 10px;
+}
+
+.pp {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+}
+.pp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.2rem;
+  position: relative;
+}
+
+.edit-pp {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #04b104;
+  position: absolute;
+  right: 39%;
+  top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  margin: 0.6rem 0;
+  border: 1px solid grey;
+}
+
+#username {
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.update-btn {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid #04b104;
+  background-color: #04b104;
+  color: white;
+  border-radius: 10px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.update-btn:hover {
+  border: 2px solid #04b104;
+  background-color: white;
+  color: #04b104;
+}
+
+.filename {
+  position: absolute;
+  top: -10px;
+  font-style: italic;
+  color: #b6b5b5;
 }

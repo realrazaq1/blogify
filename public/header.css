@@ -77,8 +77,31 @@ header {
 
 .current-user {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .current-user:hover {
   color: yellow;
+}
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+.current-user-name {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  position: relative;
+}
+
+.current-user-name i {
+  position: absolute;
+  right: -16px;
+  top: 0.42rem;
 }

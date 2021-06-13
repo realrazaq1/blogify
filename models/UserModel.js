@@ -11,17 +11,24 @@ const UserSchema = mongoose.Schema(
       lowercase: true,
       minlength: [2, "username cannot be less 2 characters"],
       maxlength: [15, "username should not be more than 15 characters"],
+      trim: true,
     },
     email: {
       type: String,
       required: [true, "email address is required"],
       validate: [isEmail, "please enter a valid email"],
       unique: true,
+      trim: true,
     },
     password: {
       type: String,
       required: [true, "password is required"],
       minlength: [6, "password cannot be less than 6 characters"],
+    },
+    profilePic: {
+      type: String,
+      default: "avatar.png",
+      trim: true,
     },
   },
   { timestamps: true }
