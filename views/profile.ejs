@@ -3,13 +3,16 @@
  <%- include('./partials/header.ejs') %>
     <main>
       <div class="container">
-        <!-- profile picture -->
       <div class="profile-container">
+               
+        <!-- profile picture -->
        <div class="pp-container">
-         <span class="filename"></span>
-        <img src="/uploads/<%= user.profilePic %> " alt="" class="pp">
-        <div class="edit-pp">
-          <i class="fas fa-pen"></i>
+         <!-- <span class="filename"></span> -->
+        <div class="pp-image">
+          <img src="/uploads/<%= user.profilePic %> " alt="" class="pp">
+          <div class="edit-pp">
+            <i class="fas fa-camera"></i>
+          </div>
         </div>
         <input type="file" name="file" id="file" style="display: none;">
        </div>
@@ -18,6 +21,8 @@
          <h1>User Profile</h1>
          <label for="username">Username</label>
          <input type="text" name="username" value="<%= user.username %> " disabled id="username">
+         <label for="username">Email</label>
+         <input type="text" name="email" value="<%= user.email %> " disabled id="email">
          <h2>Change password</h2>
          <form>
            <input type="password" name="oldpw" id="oldpw" placeholder="Old password">
@@ -27,56 +32,11 @@
        </div>
       </div>
       </div>
+      <div class="feedback">
+      </div>
+    <%- include('./partials/resv.ejs') %> 
+
     </main>
-    <script>
-      const form = document.querySelector('form');
-      const fileInput = document.querySelector('#file');
-      const pp = document.querySelector('.pp');
-      const editPP = document.querySelector('.edit-pp');
-      const fileName = document.querySelector('.filename');
-      const username = document.querySelector('#username').value;
-
-      // edit pp
-      editPP.addEventListener('click', (e) => {
-        fileInput.click()
-      })
-
-      // file input
-      fileInput.addEventListener('change', async (e) => {
-        // const nameSplit = fileInput.value.split('\\');
-        // fileName.innerHTML = nameSplit[nameSplit.length - 1];
-        
-        // ...........................
-
-        const data = new FormData();
-        data.append('username', username);
-        data.append('file', fileInput.files[0]);
-        
-        const res = await fetch('/pp', {
-          method: 'POST',
-          body: data
-        });
-        const resp = await res.json();
-        console.log(resp);
-        if(resp.message == 'wrong file format'){
-          alert('Only images allowed')
-        }
-        if(resp.message == 'File too large'){
-          alert('File is too large. Should not be more than 3MB')
-        }
-        if(resp.message == 'success'){
-          // pp.setAttribute('src', `/uploads/${resp.filename}`)
-          location.reload()
-          // setTimeout(() => {
-          //   alert('Profile pic updated successfully...')
-          //   location.reload()
-          // }, 1500);
-
-        }
-      })
-
-    
-
-    </script>
+    <script src="/js/profile.js"></script>
   </body>
 </html>

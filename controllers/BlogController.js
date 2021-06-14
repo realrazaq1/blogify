@@ -4,30 +4,31 @@ require("dotenv").config();
 const { TOKEN_SECRET } = process.env;
 const moment = require("moment");
 
-const { handleErrors } = require("../utils/utils");
+const Utils = require("../utils/utils");
 const User = require("../models/UserModel");
 
-module.exports = {
-  submitBlog: async (req, res) => {
+class BlogController {
+  /**
+   * POST request to /blog.
+   * Handles all the logic responsible for sumbitting a new blog to the database.
+   */
+  static submitBlog = async (req, res) => {
     try {
       const { title, snippet, body, author } = req.body;
       const blog = await Blog.create({ title, snippet, body, author });
       res.status(201).json({ message: "success" });
       console.log("new blog created");
     } catch (err) {
-      const errors = handleErrors(err);
+      const errors = Utils.handleErrors(err);
       res.status(400).json({ errors });
     }
-  },
+  };
 
-  getBlogs: async (req, res) => {
-    /**
-     * Get blogs published by currently logged in user
-     * 1. Check if a user is logged in by checking if token exist
-     * 2. If token exist, verify it.
-     * 3. Use the id in the decodedToken to get the user info from db
-     * 4. Find all blogs published by the logged in user with the username from step 3
-     */
+  /**
+   * GET request to /user/blogs.
+   * Responsible for getting the most recent blogs of the user. This are the blogs displayed on the user's Dashboard. This doesn't show all the blogs posted by the user.
+   */
+  static getBlogs = async (req, res) => {
     const token = req.cookies.btoken;
 
     if (token) {
@@ -49,9 +50,13 @@ module.exports = {
         }
       });
     }
-  },
+  };
 
-  getSingleBlog: async (req, res) => {
+  /**
+   * GET request to /blog/:author/:id.
+   * Find and returns specific blog posted by a specific author.
+   */
+  static getSingleBlog = async (req, res) => {
     const { author, id } = req.params;
     try {
       // query db and send blog into the blog view
@@ -78,9 +83,13 @@ module.exports = {
             : "<h1>unable to get blog. invalid id<h1>"
         );
     }
-  },
+  };
 
-  getAuthorBlogs: async (req, res) => {
+  /**
+   * GET request to /blogs/:author.
+   * Find and returns all blogs posted by a specific author.
+   */
+  static getAuthorBlogs = async (req, res) => {
     let { author } = req.params;
     try {
       const blogs = await Blog.find({ author }).sort({
@@ -104,9 +113,13 @@ module.exports = {
       console.log(err.message);
       res.status(400).send(`<h1>${err.message}</h1>`);
     }
-  },
+  };
 
-  deleteBlog: async (req, res) => {
+  /**
+   * DELETE request to /blog.
+   * Responsible for deleting a blog when the delete icon is clicked on.
+   */
+  static deleteBlog = async (req, res) => {
     const { blogId } = req.body;
 
     try {
@@ -115,14 +128,18 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  },
-  updateBlog: async (req, res) => {
+  };
+
+  /**
+   * PUT request to /blogs.
+   * Responsible for updating an already existing blog
+   */
+  static updateBlog = async (req, res) => {
     const { blogId, ...data } = req.body;
     await Blog.findByIdAndUpdate(blogId, { $set: data });
-    // const blog = await Blog.findOneAndUpdate({ _id: blogId }, data, {
-    //   returnOriginal: false,
-    // });
 
     res.json({ message: "blog updated" });
-  },
-};
+  };
+}
+
+module.exports = BlogController;
