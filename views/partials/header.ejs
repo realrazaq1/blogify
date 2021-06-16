@@ -46,15 +46,14 @@
 <script>
   const currentUser = document.querySelector(".current-user");
   const userDropdown = document.querySelector(".user-dropdown");
-  const header = document.querySelector("header");
+  const wrapper = document.querySelector(".wrapper");
 
-  currentUser.addEventListener("mouseover", (e) => {
-    userDropdown.classList.add("show-dropdown");
-  });
-  document.body.addEventListener("click", (e) => {
+  currentUser.addEventListener("click", (e) => {
     if (e.target != userDropdown) {
       if (userDropdown.classList.contains("show-dropdown")) {
         userDropdown.classList.remove("show-dropdown");
+      } else {
+        userDropdown.classList.add("show-dropdown");
       }
     }
   });
