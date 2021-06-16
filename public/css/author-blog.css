@@ -31,3 +31,17 @@ body {
 .container a:hover h2 {
   color: yellow;
 }
+
+.blog p {
+  line-height: 2em;
+}
+.blog h2 {
+  margin-bottom: 1rem;
+}
+
+/* media query */
+@media screen and (max-width: 700px) {
+  .container {
+    max-width: 85%;
+  }
+}

@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-  width: 600px;
+  max-width: 60%;
   margin: 3.5rem auto;
   border: 2px solid white;
   border-radius: 10px;
@@ -87,7 +87,7 @@ hr {
   padding: 1rem 2rem;
   border-radius: 10px;
   height: max-content;
-  width: 570px;
+  max-width: 60%;
   margin: auto;
   color: black;
   margin-top: 1rem;
@@ -139,4 +139,28 @@ form textarea {
 
 .publish-btn:hover {
   background: grey;
+}
+
+/* media query */
+@media screen and (max-width: 1000px) {
+  .container {
+    max-width: 80%;
+  }
+  .update-blog-wrapper {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    max-width: 90%;
+    padding: 1rem;
+  }
+  .blog-d {
+    font-size: 0.9rem;
+    gap: 1rem;
+  }
+  .update-blog-wrapper {
+    max-width: 92%;
+    padding: 1rem;
+  }
 }

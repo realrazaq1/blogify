@@ -104,8 +104,16 @@ header {
   position: relative;
 }
 
-/* .current-user-name i {
-  position: absolute;
-  right: -16px;
-  top: 0.42rem;
-} */
+/* media query */
+@media screen and (max-width: 500px) {
+  header {
+    padding: 1.2rem 1rem;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+  .user-dropdown {
+    right: 1rem;
+    top: 55px;
+  }
+}

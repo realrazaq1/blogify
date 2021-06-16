@@ -123,3 +123,22 @@ form textarea {
   font-weight: bold;
   font-size: 13px;
 }
+
+/* media query */
+@media screen and (max-width: 1000px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 500px) {
+  .blog-form-container {
+    padding: 1rem;
+  }
+  .container {
+    max-width: 97%;
+  }
+  .blog h2 {
+    font-size: 1.3rem;
+  }
+}

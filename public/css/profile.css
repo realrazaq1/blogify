@@ -118,3 +118,13 @@ input {
 .feedback.success {
   background-color: #04b104;
 }
+
+/* media query */
+@media screen and (max-width: 800px) {
+  .container {
+    max-width: 90%;
+  }
+  .profile-container {
+    padding: 1.3rem;
+  }
+}
