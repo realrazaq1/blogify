@@ -157,7 +157,8 @@ form textarea {
   }
   .blog-d {
     font-size: 0.9rem;
-    gap: 1rem;
+    /* gap: 1rem; */
+    display: block;
   }
   .update-blog-wrapper {
     max-width: 92%;
