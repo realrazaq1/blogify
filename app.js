@@ -5,6 +5,7 @@ const BlogRoutes = require("./routes/BlogRoutes");
 const ProfileRoutes = require("./routes/ProfileRoutes");
 const DefaultRoutes = require("./routes/DefaultRoutes");
 const Utils = require("./utils/utils");
+const morgan = require("morgan");
 
 // setup express app
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(morgan("dev"));
 
 // connect to DB
 Utils.connectToDB(() => {
