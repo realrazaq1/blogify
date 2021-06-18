@@ -1,0 +1,35 @@
+form input {
+  display: block;
+  padding: 0.7rem;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.container {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 1rem 2rem;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.submit-btn {
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.4rem;
+}
+
+.submit-btn:hover {
+  background: grey;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 13px;
+}

@@ -1,0 +1,33 @@
+<%- include('./partials/head.ejs') %>
+  <body>
+ <%- include('./partials/header.ejs') %>
+    <main>
+      <div class="container">
+        <h2>Create a new account</h2>
+        <form>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <div class="error username"></div>
+          <input type="email" name="email" id="email" placeholder="Email" />
+          <div class="error email"></div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <div class="error password"></div>
+          <button class="submit-btn">Register</button>
+        </form>
+      </div>
+    
+
+    </main>
+
+    <script src="/js/register.js"></script>
+  </body>
+</html>

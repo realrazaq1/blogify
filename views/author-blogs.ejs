@@ -1,0 +1,24 @@
+<%- include('./partials/head.ejs') %>
+  <body>
+ <%- include('./partials/header.ejs') %>
+    <main>
+      <div class="container">
+        <% newAuthor = author[0].toUpperCase() + author.slice(1); %> 
+      <h1><%= newAuthor %>  blogs</h1>
+        <% blogs.forEach(blog => { %>
+
+            <a href="/blog/<%= blog.author %>/<%= blog._id %> " class="blog">
+                <h2 class="blog-title"><%= blog.title %> </h2>
+                <p class="blog-snippet">
+                    <%= blog.snippet %> 
+                </p>
+              </a> 
+
+       <% }) %> 
+        </div>
+      </div>
+  
+
+    </main>
+  </body>
+</html>

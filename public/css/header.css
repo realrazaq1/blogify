@@ -1,0 +1,119 @@
+header {
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 3.5rem;
+  align-items: center;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.user-dropdown {
+  height: 200px;
+  width: 200px;
+  background-color: white;
+  position: absolute;
+  border: 1px solid rgb(216, 216, 216);
+  right: 2rem;
+  top: 70px;
+  z-index: 10;
+  border-radius: 15px;
+  display: none;
+}
+
+.show-dropdown {
+  display: block;
+  transition: all 0.5s ease-in;
+}
+
+.dropdown-items {
+  padding: 1rem 1.4rem;
+  line-height: 2.5em;
+}
+
+.dropdown-items a {
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-items a:hover {
+  color: grey;
+}
+
+.caret-up {
+  position: absolute;
+  right: 1rem;
+  top: -1.2rem;
+  font-size: 2.1rem;
+  color: white;
+}
+
+.dropdown-items i {
+  margin-right: 5px;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+}
+
+.logo:hover {
+  color: yellow;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1.3rem;
+  list-style-type: none;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-menu a:hover {
+  color: yellow;
+}
+
+.current-user {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.current-user:hover {
+  color: yellow;
+}
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+.current-user-name {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  position: relative;
+}
+
+/* media query */
+@media screen and (max-width: 500px) {
+  header {
+    padding: 1.2rem 1rem;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+  .user-dropdown {
+    right: 1rem;
+    top: 55px;
+  }
+}

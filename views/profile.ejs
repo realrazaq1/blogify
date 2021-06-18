@@ -1,0 +1,42 @@
+<%- include('./partials/head.ejs') %>
+  <body>
+ <%- include('./partials/header.ejs') %>
+    <main>
+      <div class="container">
+      <div class="profile-container">
+               
+        <!-- profile picture -->
+       <div class="pp-container">
+         <!-- <span class="filename"></span> -->
+        <div class="pp-image">
+          <img src="<%= user.ppURL %> " alt="" class="pp">
+          <div class="edit-pp">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+        <input type="file" name="profile-pic" id="file" style="display: none;">
+       </div>
+       <!-- profile details -->
+       <div class="profile-details">
+         <h1>User Profile</h1>
+         <label for="username">Username</label>
+         <input type="text" name="username" value="<%= user.username %> " disabled id="username">
+         <label for="username">Email</label>
+         <input type="text" name="email" value="<%= user.email %> " disabled id="email">
+         <h2>Change password</h2>
+         <form>
+           <input type="password" name="oldpw" id="oldpw" placeholder="Old password">
+           <input type="password" name="newpw" id="newpw" placeholder="New password">
+           <button class="update-btn">Update password</button>
+         </form>
+       </div>
+      </div>
+      </div>
+      <div class="feedback">
+      </div>
+    
+
+    </main>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

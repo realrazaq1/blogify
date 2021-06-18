@@ -1,0 +1,167 @@
+body {
+  background-color: #121412;
+  color: white;
+}
+
+.container {
+  max-width: 60%;
+  margin: 3.5rem auto;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.container p {
+  line-height: 2em;
+}
+.container h1 {
+  margin-bottom: 1rem;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+.blog-action {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  transition: all 0.3s ease-in;
+}
+
+.blog-d {
+  display: flex;
+  gap: 1.3rem;
+}
+
+.delete-blog-btn {
+  position: absolute;
+  right: -1.1rem;
+  bottom: 3.5rem;
+  color: #f15757;
+}
+.delete-blog-btn:hover {
+  background-color: #f15757;
+  color: white;
+}
+
+.edit-blog-btn {
+  position: absolute;
+  right: -1.1rem;
+  bottom: 7rem;
+  color: #05991e;
+}
+.edit-blog-btn:hover {
+  background-color: #05991e;
+  color: white;
+}
+
+/* update blog */
+
+.update-blog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 30;
+}
+
+.show-update-container {
+  display: block;
+}
+
+.update-blog-wrapper {
+  background-color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  height: max-content;
+  max-width: 60%;
+  margin: auto;
+  color: black;
+  margin-top: 1rem;
+}
+.update-blog-container h1 {
+  margin-bottom: 1rem;
+}
+
+form input {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  width: 100%;
+}
+form textarea {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  width: 100%;
+}
+
+.author-info {
+  margin-bottom: 1rem;
+}
+
+.author-info p {
+  display: inline;
+}
+.author-info input {
+  border: none;
+  background-color: white;
+  width: max-content;
+  padding: 0;
+  font-size: 1rem;
+  margin: 0 10px;
+  color: green;
+  font-weight: bold;
+}
+
+.publish-btn {
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.publish-btn:hover {
+  background: grey;
+}
+
+/* media query */
+@media screen and (max-width: 1000px) {
+  .container {
+    max-width: 80%;
+  }
+  .update-blog-wrapper {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    max-width: 90%;
+    padding: 1rem;
+  }
+  .blog-d {
+    font-size: 0.9rem;
+    /* gap: 1rem; */
+    display: block;
+  }
+  .update-blog-wrapper {
+    max-width: 92%;
+    padding: 1rem;
+  }
+}

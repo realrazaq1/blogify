@@ -1,0 +1,53 @@
+<%- include('./partials/head.ejs') %>
+  <body>
+     <%- include('./partials/header.ejs') %>
+    <main>
+      <div class="container">
+        <div class="blog-form-container">
+          <h1>Create new blog</h1>
+        <form class="blog-form">
+          <input type="text" name="title" id="title" placeholder="Title" />
+          <div class="error title"></div>
+          <textarea
+            name="snippet"
+            id="snippet"
+            cols="30"
+            rows="2"
+            placeholder="Snippet"
+          ></textarea>
+          <div class="error snippet"></div>
+
+          <textarea
+            name="body"
+            id="body"
+            cols="30"
+            rows="5"
+            placeholder="Body"
+          ></textarea>
+          <div class="error body"></div>
+
+          <div class="author-info">
+            <p>Author:</p>
+            <input
+              type="text"
+              name="author"
+              id="author"
+              value="<%= user.username %> "
+              disabled
+            />
+          </div>
+          <button class="publish-btn">Publish</button>
+        </form>
+        </div>
+        <div class="published-blogs">
+          <h1>Recently published blogs</h1>
+          <div class="published-blogs-content"></div>
+          <div class="vablogs-wrapper">
+          <a href="/blogs/<%=user.username %>" class="vablogs">view all blogs <i class="fas fa-caret-right"></i></a>
+          </div>
+        </div>
+      </div>
+      </main>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>
