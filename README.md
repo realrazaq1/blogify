@@ -1,4 +1,4 @@
-# About the web app
+# What is Blogify?
 blogify is a web application that allow registered users to create and publish blogs easily.
 
 ## Features
